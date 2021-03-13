@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../App.css';
 export class AddAlbum extends Component {
     constructor(props){
         super(props)
@@ -24,7 +25,6 @@ export class AddAlbum extends Component {
     }
     handleSubmit = (e, props) => {
         let obj = {};
-        this.props.receiveFunc()
         // obj.id = this.state.id;
         obj.id = this.state.album_cover + 1;
         obj.album_title = this.props.receiveFunc;
@@ -32,15 +32,16 @@ export class AddAlbum extends Component {
         obj.album_cover = this.state.album_cover;
         alert(` ${obj.id} ${obj.album_title} ${obj.artist} ${obj.album_cover}`)
         console.log("submitted the data", obj)
+        this.props.receiveFunc(obj)
         e.preventDefault()
     }
     render() {
         const { album_title, artist, album_cover} = this.state
         return (
-            <div>
+            <div className="form">
                 
                 <form onSubmit = {this.handleSubmit}>
-                    <div>
+                    <div className="form-1">
                         <label>Album Title:</label>
                         <input 
                          type="text"
@@ -50,7 +51,7 @@ export class AddAlbum extends Component {
                         />
                     </div>
                     
-                    <div>
+                    <div className="form-2">
                         <label>Artist:</label>
                         <input
                          type="text"
@@ -59,7 +60,7 @@ export class AddAlbum extends Component {
                          onChange={this.artistChange}
                         />
                     </div>
-                    <div>
+                    <div className="form-3">
                         <label>Album Cover:</label>
                         <input
                          type="file"
